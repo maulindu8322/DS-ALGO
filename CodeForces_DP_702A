@@ -1,0 +1,33 @@
+************* 202ms RUNTIME, IMPROVEMENT NEEDED *************
+
+#include <iostream>
+#include <vector>
+#include <math.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    ll n,i,c,max_c=1;
+    cin >> n;
+    ll f[n];
+    for(i=0;i<n;i++)
+    {
+        cin >> f[i];
+    }
+    c = 1;
+    for(i=1;i<n;i++)
+    {
+        if(f[i]>f[i-1])
+        {
+            c++;
+            if(c>max_c)
+                max_c = c;
+        }
+        else
+        {
+            c = 1;
+        }
+
+    }
+    cout << max_c << endl;
+}
