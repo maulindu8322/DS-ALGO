@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    ll t;
+    cin >> t;
+    while(t--)
+    {
+        ll x,y,ans;
+        cin >> x >> y;
+        ll a,b;
+        cin >> a >> b;
+
+        if((x<0 && y>0) || (x>0 && y<0))
+            ans = (abs(x)+abs(y))*a;
+        else
+        {
+            ll op1 = (abs(x)+abs(y))*a;
+            ll op2 = (min(abs(x),abs(y))*b)+(abs(x-y)*a);
+            ans = min(op1,op2);
+        }
+        cout << ans << endl;
+    }
+}
