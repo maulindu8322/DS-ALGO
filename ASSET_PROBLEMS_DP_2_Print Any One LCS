@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    string x,y;
+    cout << "Enter x :" << endl;
+    cin >> x;
+    cout << "Enter y :" << endl;
+    cin >> y;
+    int m = x.size();
+    int n = y.size();
+    int i,j;
+    int f[m+1][n+1];
+    for(i=0;i<=m;i++)
+    {
+        for(j=0;j<=n;j++)
+        {
+            if(i==0 || j==0)
+                f[i][j] = 0;
+            else if(x.at(i-1)==y.at(j-1))
+                f[i][j] = f[i-1][j-1] + 1;
+            else
+                f[i][j] = max(f[i-1][j],f[i][j-1]);
+        }
+    }
+    
+    // *******NEW CODE*********
+    i = m;
+    j = n;
+    vector<char> v;
+    while(i>=0 && j>=0)
+    {
+        if(x[i-1]==y[j-1])       //HERE I WAS DOING A MISTAKE REPEATEDLY, I WAS DOING if(x[i]==y[i]) v.push_back(x[i]); But that's wrong
+        {                        // Because x and y are of size m & n resp and f[10][10] means x[9] & y[9]
+            v.push_back(x[i-1]);
+            i--;
+            j--;
+        }
+        else
+        {
+            if(f[i-1][j]>f[i][j-1])
+                i--;
+            else
+                j--;
+        }
+    }
+    reverse(v.begin(),v.end());
+
+    cout << "Max length of LCS is : " << f[m][n] << endl;
+    cout << "One of the LCS is : " << endl;
+    for(i=0;i<v.size();i++)
+    {
+        cout << v.at(i);
+    }
+    cout << endl;
+}
