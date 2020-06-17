@@ -1,41 +1,73 @@
-********* REVERSE X, AND DO LONGEST COMMON SUBSTRING OPERATION ************
+😢😢At first I thought if I reverse X and operate longest palindromic subsequence I will get the solution, but I was wrong, because
+for the test case "aacdefcaa", the reverse is "aacfedcaa", now, 
+a a c d e f c a a 
+a a c f e d c a a
+so my result was coming like "aac", so I have to comeup with this approach. I an attaching the links
+from where I got the actual solutions😢😢
 
-#include<bits/stdc++.h>
-#define ll long long int
+*********************************************************************************************************************************
+#include <bits/stdc++.h>
 using namespace std;
+
+string expand(string x, int low, int high)
+{
+    int len = x.size();
+    while(low>=0 && high<len &&(x[low]==x[high]))
+    {
+        low--;
+        high++;
+    }
+    return x.substr(low+1,high-low-1);
+}
+
+string lps(string x)
+{
+
+    int n = x.size();
+    if(n<=1)
+    {
+        return x;
+    }
+    int maxlen = 1;
+    int curr_len = 0;
+    string max_str(1,x[0]);
+    string curr_str;
+    for(int i=0;i<n;i++)
+    {
+        curr_str = expand(x,i,i);
+        curr_len = curr_str.size();
+        if(curr_len>maxlen)
+        {
+            maxlen = curr_len;
+            max_str = curr_str;
+        }
+
+        curr_str = expand(x,i,i+1);
+        curr_len = curr_str.size();
+        if(curr_len>maxlen)
+        {
+            maxlen = curr_len;
+            max_str = curr_str;
+        }
+    }
+    cout << "Max length is : " << maxlen << endl;
+    return max_str;
+}
+
 int main()
 {
     string x;
-    cout << "Enter x :" << endl;
+    cout << "Enter x : " << endl;
     cin >> x;
-    string y = x;
-    reverse(x.begin(),x.end());
-    vector<char> v;
-    int m = x.size();
-    int n = y.size();
-    int f[m+1][n+1];
-    int i,j;
-    int maxlen = 0;
-    int c;
-    memset(f,0,sizeof(f));  // ********memset is very important tool, it makes all cell to 0***********
-    for(i=1;i<=m;i++)
-    {
-        for(j=1;j<=n;j++)
-        {
-                if(x[i-1]==y[j-1])
-                {
-                    f[i][j] = f[i-1][j-1]+1;
-                    if(f[i][j]>maxlen)
-                    {
-                        maxlen = f[i][j];
-                        c = i;
-                    }
-                }
-        }
-    }
 
-    cout << "Longest palindromic substring is : " << x.substr(c-maxlen,maxlen) << " which has lenth : " << maxlen << endl;
-                    // *********string_name.substr(starting index, size) automatically gives the required substring directly;***************
-    return 0;
+    cout << "The longest palindromic substring is : " << lps(x) << endl;
 }
+
+*********************************************************************************************************************************
+
+LINKS :
+ 1. https://www.techiedelight.com/longest-palindromic-substring-non-dp-space-optimized-solution/
+ 2. https://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
+
+
 
