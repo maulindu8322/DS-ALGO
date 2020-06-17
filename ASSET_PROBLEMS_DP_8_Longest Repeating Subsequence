@@ -1,0 +1,61 @@
+**********BASICALLY IT IS DOING LCS WITH THE SAME STRING X, AND IF A CHARACTER AT i REPEATS ITSELF, THEN, THERE MUST BE j 
+WHERE AGAIN THE CHARACTER WILL SHOW UP, SO WE WILL COMPARE X & X BUT ONLY THE CASES WITH (i!=j)****************
+
+
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+
+int main()
+{
+    string x;
+    cout << "Enter x :" << endl;
+    cin >> x;
+    string y = x;
+    int m = x.size();
+    int i,j;
+    int f[m+1][m+1];
+    for(i=0;i<=m;i++)
+    {
+        for(j=0;j<=m;j++)
+        {
+            if(i==0 || j==0)
+                f[i][j] = 0;
+            else if(x.at(i-1)==y.at(j-1) && i!=j) // THAT CONDITION (i!=j) !!!!!!!!!!
+                f[i][j] = f[i-1][j-1] + 1;
+            else
+                f[i][j] = max(f[i-1][j],f[i][j-1]);
+        }
+    }
+
+    
+    i = m;
+    j = m;
+    vector<char> v;
+    while(i>=0 && j>=0)
+    {
+        if(x[i-1]==y[j-1] && i!=j)  // THAT CONDITION (i!=j) !!!!!!!!!!
+        {                       
+            v.push_back(x[i-1]);
+            i--;
+            j--;
+        }
+        else
+        {
+            if(f[i-1][j]>f[i][j-1])
+                i--;
+            else
+                j--;
+        }
+    }
+    reverse(v.begin(),v.end());
+
+    cout << "Max length of LRS is : " << f[m][m] << endl;
+    cout << "One of the LRS is : " << endl;
+    for(i=0;i<v.size();i++)
+    {
+        cout << v.at(i);
+    }
+    cout << endl;
+}
+
