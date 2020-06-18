@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    ll n;
+    cin >> n;
+    ll ans;
+    if(n==0)
+    ans = 0;
+    if(n%2==0)
+    {
+        ans = pow(2,(n/2));
+    }
+    else
+    ans = 0;
+    cout << ans << endl;
+}
