@@ -1,0 +1,13 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    ll l,r;
+    cin >> l >> r;
+    if(l==r && l%2!=0)
+    cout << l << endl;
+    else
+    cout << 2 << endl;
+
+}
