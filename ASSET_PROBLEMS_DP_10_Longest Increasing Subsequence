@@ -1,0 +1,80 @@
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& x) {
+    int m = x.size();
+    vector<int> y=x;
+    sort(y.begin(),y.end());
+	
+	// This piece of coad is to filter duplicate elements of y out   ************IMPORTANT!!!!!!!!!!************
+	
+    vector<int>::iterator ip;
+    ip = unique(y.begin(), y.begin() + m);
+    y.resize(distance(y.begin(), ip));
+	
+	// From here normal LCS starts
+  
+    int i,j;
+    int n = y.size();
+    int f[m+1][n+1];
+    for(i=0;i<=m;i++)
+    {
+        for(j=0;j<=n;j++)
+        {
+            if(i==0 || j==0)
+                f[i][j] = 0;
+            else if(x.at(i-1)==y.at(j-1))
+                f[i][j] = f[i-1][j-1] + 1;
+            else
+                f[i][j] = max(f[i-1][j],f[i][j-1]);
+        }
+    }
+
+   return f[m][n];
+}
+};
+
+
+*************************************           METHOD 2 : FOR LENGTH           *******************************************
+
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    int m;
+    cout << "Enter x size:" << endl;
+    cin >> m;
+    vector<int> x;
+    int i,j,temp;
+    cout << "Enter x :" << endl;
+    for(i=0;i<m;i++)
+    {
+        cin >> temp;
+        x.push_back(temp);
+    }
+
+   int f[m] = {0};
+   f[0] = 1;
+   for(i=1;i<m;i++)
+   {
+       for(j=0;j<i;j++)
+       {
+           if(x.at(j)<x.at(i) && f[j]>f[i])
+            f[i] = f[j];
+       }
+       f[i]++;
+   }
+   int maxlen = INT_MIN;
+   for(i=0;i<m;i++)
+   {
+       if(f[i]>maxlen)
+        maxlen = f[i];
+   }
+
+   cout << "Max length is :" << maxlen << endl;
+}
+
+
+        ********************************       METHOD 2 : PRINT LIS   ************************************
+        
+        THIS METHOD IS VERY HECTIC, CHECK TECHDELIGHT BLOG FOR MORE INFO
