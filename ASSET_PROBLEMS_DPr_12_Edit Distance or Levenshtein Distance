@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    string x,y;
+    cout << "Enter x : " << endl;
+    cin >> x;
+    cout << "Enter y : " << endl;
+    cin >> y;
+    int m = x.size();
+    int n = y.size();
+    int f[m+1][n+1];
+    memset(f,0,sizeof(f));
+    int i,j;
+    for(i=1;i<=m;i++)
+    {
+        f[i][0] = i;
+    }
+    for(j=1;j<=n;j++)
+    {
+        f[0][j] = j;
+    }
+    for(i=1;i<=m;i++)
+    {
+        for(j=1;j<=n;j++)
+        {
+            if(x[i-1]==y[j-1])
+            {
+                f[i][j] = f[i-1][j-1];
+            }
+            else
+            {
+                f[i][j] = 1 + min((min(f[i-1][j],f[i][j-1])),f[i-1][j-1]);
+            }
+        }
+    }
+
+    cout << "Min cost  or Levenshtein Distance is : " << f[m][n] << endl;
+}
