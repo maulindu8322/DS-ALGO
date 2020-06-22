@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    ll t;
+    cin >> t;
+    while(t--)
+    {
+        ll a,b,c,r;
+        ll temp;
+        cin >> a >> b >> c >> r;
+        if(a>b)
+        {
+            temp = a;
+            a = b;
+            b = temp;
+        }
+        ll c1 = c+r;
+        ll c2 = c-r;
+        ll ans =0;
+        if(c1>=a && c1<=b)
+            ans += (b-c1);
+        if(c2>=a && c2<=b)
+            ans += (c2-a);
+        if(c1<a || c2>b)
+            ans = (b-a);
+        cout << ans << endl;
+    }
+}
