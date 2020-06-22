@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int a,b,c;
+        cin>>a>>b>>c;
+        int ans=0;
+        if(a>0) a--,ans++;
+        if(b>0) b--,ans++;
+        if(c>0) c--,ans++;
+ 
+        int k[3];
+        k[0]=a;
+        k[1]=b;
+        k[2]=c;
+        sort(k,k+3);
+ 
+        if(k[2]>0 && k[1]>0) k[2]--,k[1]--,ans++;
+        if(k[0]>0 && k[2]>0) k[0]--,k[2]--,ans++;
+        if(k[1]>0 && k[0]>0) k[1]--,k[0]--,ans++;
+ 
+        if(k[1]>0 && k[0]>0 && k[2]>0) ans++;
+        cout<<ans<<endl;
+     } 
+ 
+    return 0;
+}
