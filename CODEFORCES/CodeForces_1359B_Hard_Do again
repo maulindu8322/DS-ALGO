@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long c1,c2,n,m,i,k,ans,t;
+char c[105][1005];
+int main(){
+	cin>>t;
+	while(t--){
+ 
+	cin>>n>>m>>c1>>c2;
+	for(k=1;k<=n;k++){
+		for(i=1;i<=m;i++)
+		cin>>c[k][i];
+	}
+	c2=min(2*c1,c2);
+	for(k=1;k<=n;k++){
+	for(i=1;i<=m;i++){
+		if(i<m && c[k][i]=='.' && c[k][i+1]=='.') ans+=c2,i++;
+		else if(c[k][i]=='.') ans+=c1;
+	}
+}	 cout<<ans<<endl; ans=0;} }
