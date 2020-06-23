@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+int main()
+{
+    ll n,m,a;
+    cin >> n >> m >> a;
+    ll ans;
+    if(n*m<=a*a)
+        ans = 1;
+    else
+    {
+        ans = ceil((long double)n/a) * ceil((long double)m/a);
+    }
+    cout << ans;
+}
