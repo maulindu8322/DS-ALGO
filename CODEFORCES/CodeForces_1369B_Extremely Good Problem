@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+
+int main()
+{
+  ll t;
+  cin >> t;
+  while(t--)
+  {
+      ll n;
+      cin >> n;
+      string a;
+      cin >> a;
+      ll fo = 0;
+      ll lz = 0;
+      ll i;
+      bool flag1 = false;
+      bool flag2 = false;
+      for(i=0;i<n;i++)
+      {
+          if(a[i]=='1')
+           {
+                fo = i;
+                flag1 = true;
+                break;
+           }
+
+      }
+      for(i=n-1;i>=0;i--)
+      {
+          if(a[i]=='0')
+            {
+                lz = i;
+                flag2 = true;
+                break;
+            }
+
+      }
+      if(flag1==false||flag2==false)
+        cout << a << endl;
+      else
+      {
+          if(lz<fo)
+        {
+            for(i=0;i<n;i++)
+                cout << a[i];
+            cout << endl;
+        }
+      else
+      {
+          a.erase(fo,lz-fo);
+          for(i=0;i<a.size();i++)
+          {
+              cout << a[i];
+          }
+          cout << endl;
+      }
+      }
+
+  }
+}
