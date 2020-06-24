@@ -1,0 +1,40 @@
+                                     *********************** O(n) time complexity, fastest ***************************
+#include<bits/stdc++.h>
+#include<unordered_map>
+#define ll long long int
+#define loop(x,n) for(long long int x=0;x<n;x++)
+#define itr(y,n) for(int y=0;y<n;y++)
+using namespace std;
+
+int main()
+{
+  int n;
+  cout << "Array size :"<< endl;
+  cin >> n;
+  int a[n];
+  int i;
+  cout << "Enter array elements" << endl;
+  itr(i,n)
+  {
+      cin >> a[i];
+  }
+
+  int sum;
+  cout << "Enter sum :" << endl;
+  cin >> sum;
+
+  unordered_map<int,int> mp;
+  itr(i,n)
+  {
+      mp.insert({a[i],i});
+  }
+  itr(i,n)
+  {
+      if(mp.find(sum-a[i])!=mp.end())
+      {
+          cout << "Elements of sum " << sum << " is : " << a[i] << " and " << a[mp[sum-a[i]]] << endl;
+      }
+  }
+ return 0;
+
+}
