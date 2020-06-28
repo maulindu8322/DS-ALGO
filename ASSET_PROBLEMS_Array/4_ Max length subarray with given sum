@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#include <unordered_map>
+#define ll long long int
+using namespace std;
+int main() {
+    int n;
+    cout << "Size: " << endl;
+    cin >> n;
+    int a[n];
+    cout << "Array : " << endl;
+    int i,j;
+    int target;
+    for(i=0;i<n;i++)
+    {
+        cin >> a[i];
+    }
+    cout << "Target sum : " << endl;
+    cin >> target;
+    unordered_multimap<int,int> mp;
+    int len = -1;
+    mp.insert(pair<int,int>(0,-1));
+    int sum = 0;
+    for(i=0;i<n;i++)
+    {
+        sum += a[i];
+        if(mp.find(sum)==mp.end())  //This is important, if sum is seen before, them dont insert it, the previous sum has more lengt than current sum
+        {
+            mp.insert(pair<int,int>(sum,i)); // If you wanna add all sum, then instead of mp.find(), use mp.equal_range(key), it returns all elements with same value when found
+        }
+
+        if(mp.find(sum-target)!=mp.end())
+        {
+            auto it = mp.find(sum - target);
+            if(i-it->second>len)
+                len = (i-it->second);
+        }
+
+    }
+  cout << "Max length :" << len << endl;
+    return 0;
+}
