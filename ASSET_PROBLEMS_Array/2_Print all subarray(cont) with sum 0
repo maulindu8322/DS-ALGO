@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+#include <unordered_map>
+#define ll long long int
+using namespace std;
+int main() {
+    int n;
+    cout << "Size: " << endl;
+    cin >> n;
+    int a[n];
+    cout << "Array : " << endl;
+    int i,j;
+    for(i=0;i<n;i++)
+    {
+        cin >> a[i];
+    }
+    unordered_multimap<int,int> mp;
+    unordered_multimap<int,int> ans;
+    mp.insert(pair<int,int>(0,-1));
+    int sum = 0;
+    for(i=0;i<n;i++)
+    {
+        sum += a[i];
+        if(mp.find(sum)!=mp.end())
+        {
+            auto it = mp.find(sum);
+            while (it != mp.end() && it->first == sum)
+            {
+                ans.insert(pair<int, int>(it->second + 1, i));
+                it++;
+            }
+        }
+        mp.insert(pair<int,int>(sum,i));
+    }
+    auto itr = ans.begin();
+    while(itr!=ans.end())
+    {
+        for(j=itr->first;j<=itr->second;j++)
+        {
+            cout << a[j] << " ";
+        }
+        cout << endl;
+        itr++;
+    }
+    return 0;
+}
