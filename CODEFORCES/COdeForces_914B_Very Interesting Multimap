@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+int main()
+{
+  ll n;
+  cin >> n;
+
+  ll i,temp;
+  vector<ll> f;
+  for(i=0;i<n;i++)
+  {
+      cin >> temp;
+      f.push_back(temp);
+  }
+
+  sort(f.begin(),f.end());
+  multimap<int,int> mp;
+ ll flag = 0;
+ mp.insert(pair<int,int>(-1,-1));
+  for(i=0;i<n;i++)
+  {
+      if(mp.find(f.at(i))==mp.end())
+        mp.insert(pair<int,int>(f.at(i),1));
+      else
+      {
+        auto it = mp.find(f.at(i));
+        it->second++;
+      }
+  }
+  auto itr = mp.end();
+  while(itr!=mp.begin())
+  {
+      if(itr->second%2!=0)
+      {
+          flag = 1;
+          break;
+      }
+      itr--;
+  }
+ if(flag == 1)
+    cout << "Conan";
+ else
+    cout << "Agasa";
+ cout << endl;
+}
