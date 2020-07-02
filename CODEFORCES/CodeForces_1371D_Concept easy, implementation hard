@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define pb push_back
+
+using namespace std;
+
+int main()
+{
+    ll t;
+    cin >> t;
+    while(t--)
+    {
+        ll n,k,i,j,p,q;
+        cin >> n >>k;
+        ll a[n][n];
+        memset(a,0,sizeof(a));
+        ll f = 0;
+        if(k%n==0)
+            f =0;
+        else f = 2;
+        for(i=0;i<n&&k;i++)
+        {
+            for(j=0;j<n&&k;j++)
+            {
+                p = j;
+                q = (i+j)%n;
+                a[p][q] = 1;
+                k--;
+            }
+        }
+        cout << f << endl;
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                cout << a[i][j];
+            }
+            cout << endl;
+        }
+    }
+}
