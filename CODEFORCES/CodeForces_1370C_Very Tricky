@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+#define ll long long int
+#define ld long double
+#define pb push_back
+#define pll pair<ll, ll>
+#define vl vector<ll>
+#define vvl vector< vector<ll> >
+#define vlp vector< pair<ll, ll> >
+#define vllp vector<pair<pll, ll> >
+#define mll map<ll, ll>
+#define rep(i,a)  for(ll i=0; i< a; i++)
+#define rep1(i,a)   for(ll i = 1; i< a; i++)
+#define foi(i, a, b)    for(ll i = a; i<b ; i++)
+#define fod(i, a, b)    for(ll i = a; i>=b ; i--)
+#define mp make_pair
+#define all(v)  (v).begin(), (v).end()
+#define fst first
+#define sec second
+#define ff first.first
+#define fs first.second
+#define max3(a, b, c)   max(max(a, b), c)
+#define min3(a, b, c)   min(min(a, b), c)
+#define MAX 1000001
+#define MOD 1000000007
+// #define MOD 998244353
+#define endl "\n"
+#define INF (ll)1e18
+#define s(v) (ll)v.size()
+#define e(v) v.empty()
+#define bscount(x) __builtin_popcountll(x)
+// #define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+
+using namespace std;
+// using namespace __gnu_pbds;
+
+
+
+int main(){
+
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+    ll t;
+    cin>>t;
+
+    while(t--)
+    {
+    	ll n;
+        cin >> n;
+        ll f = -1;
+        ll p = 0;
+        ll i;
+        ll k;
+        if(n==1)
+            f = -1;
+        else if(n%2)
+        {
+            f = 1;
+        }
+        else if(n==2)
+            f = 1;
+        else if(n%2==0)
+        {
+            p = ceil((double)sqrt(n));
+            foi(i,3,p+1)
+            {
+                if(i%2==0 && n%i==0)
+                {
+                    k = n/i;
+                    if(k%2!=0)
+                    {
+                        f = 1;
+                        break;
+                    }
+                }
+                else if(i%2!=0 && n%i==0)
+                {
+                    k = n/i;
+                    if(k%2==0 && k/2>1)
+                    {
+                        f = 1;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(f==1)
+            cout << "Ashishgup" << endl;
+        else if(f==-1)
+            cout << "FastestFinger" << endl;
+    }
+}
