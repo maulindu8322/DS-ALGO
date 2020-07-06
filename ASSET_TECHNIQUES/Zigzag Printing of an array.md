@@ -1,3 +1,5 @@
+  ![Illustration](https://media.geeksforgeeks.org/wp-content/uploads/zigzag-1.png)
+      
       #include <stdio.h> 
       #include <stdlib.h> 
 
