@@ -118,3 +118,5 @@ Lets take example {1, 2, 3}. Current value is 1*0+2*1+3*2 = 8. Shifting it by on
 - Since one loop is needed from 0 to n to check all rotations and the sum of the present rotation is calculated from the previous rotations in O(1) time).
 - Auxiliary Space: O(1).
 - As no extra space is required to so the space complexity will be O(1)
+
+## All Credits : Geeks for Geeks, copied from there !
