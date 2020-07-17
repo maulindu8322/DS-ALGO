@@ -24,5 +24,5 @@
   - Convert int to string
   - For each char in string, this code will convert char to int
   
-      if ('0' <= p && p <= '9')
-        integer = p - '0';
+          if ('0' <= p && p <= '9')
+            integer = p - '0';
